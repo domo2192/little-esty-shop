@@ -1,15 +1,35 @@
 class GithubService < ApiService
 	def self.commits
-		endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits"
-		commits_json = get_data(endpoint)
+		dom_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=domo2192&per_page=100"
+		ben_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=b-enji-cmd&per_page=100"
+		tommy_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=tsnieuwen&per_page=100"
+		adam_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=Pragmaticpraxis37&per_page=100"
 
-		commits_json.map do |commit|
+		ben_commits = get_data(ben_endpoint)
+		dom_commits = get_data(dom_endpoint)
+		tommy_commits = get_data(tommy_endpoint)
+		adam_commits = get_data(adam_endpoint)
+
+		ben_commits.map do |commit|
 					binding.pry
 					Commit.new(commit)
 		end
-		
+
+		dom_commits.map do |commit|
+					binding.pry
+					Commit.new(commit)
+		end
+
+		tommy_commits.map do |commit|
+					binding.pry
+					Commit.new(commit)
+		end
+
+		adam_commits.map do |commit|
+					binding.pry
+					Commit.new(commit)
+		end
 	end
-	#author:commit[:author][:login]
 
 	def self.users
 		endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/contributors"

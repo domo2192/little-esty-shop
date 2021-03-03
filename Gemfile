@@ -50,6 +50,7 @@ group :development, :test do
   gem 'hirb'
   gem 'faraday'
   gem 'json'
+  gem 'figaro'
 end
 
 group :development do
