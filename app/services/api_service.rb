@@ -1,3 +1,4 @@
+require "faraday"
 class ApiService
 	def self.get_data(endpoint)
 		response = Faraday.get(endpoint)do |req|
