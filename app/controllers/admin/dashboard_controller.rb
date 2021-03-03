@@ -1,7 +1,7 @@
 class Admin::DashboardController < ApplicationController
 
 	def index
-		@json_commits = GithubService.commits
+		#@json_commits = GithubService.commits
 
 
 
