@@ -11,7 +11,7 @@
   </head>
 
   <body>
-
+     <p> This Github repo: <%= @repo  %> has <%= @prs %> total pull requests and issues </p>
     <% @json_users.each do |name|%>
     <h2> Project Contributor: <%=name %></h2>
       <%end %>

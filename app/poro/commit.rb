@@ -6,7 +6,7 @@ class Commit
 	end
 
 	def commit_number
-		
+		binding.pry
 	end
 
 
