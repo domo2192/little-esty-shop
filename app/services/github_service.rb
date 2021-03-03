@@ -15,9 +15,8 @@ class GithubService < ApiService
 		endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/contributors"
 		json = get_data(endpoint)
 
-		json.map do |key, value|
-			key[:login]
-		end.uniq[0..3]
+		user = Users.new
+		user.return_data(json)
 	end
 
 
