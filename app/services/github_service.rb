@@ -13,7 +13,6 @@ class GithubService < ApiService
 		adam_commits = get_data(adam_endpoint)
 
 		ben_commits.map do |commit|
-			#binding.pry
 					Commit.new(commit)
 		end
 
