@@ -12,11 +12,12 @@ class GithubService < ApiService
 		tommy_commits = get_data(tommy_endpoint)
 		adam_commits = get_data(adam_endpoint)
 
+
 		breakdown["domo2192"] = Commit.new(dom_commits)
 		breakdown["b-enji-cmd"] = Commit.new(ben_commits)
 		breakdown["tsnieuwen"] = Commit.new(tommy_commits)
 		breakdown["Pragmaticpraxis37"] = Commit.new(adam_commits)
-		breakdown
+    breakdown 
 	end
 
 	def self.users
