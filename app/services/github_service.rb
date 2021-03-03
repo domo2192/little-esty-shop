@@ -17,13 +17,12 @@ class GithubService < ApiService
 		breakdown["b-enji-cmd"] = Commit.new(ben_commits)
 		breakdown["tsnieuwen"] = Commit.new(tommy_commits)
 		breakdown["Pragmaticpraxis37"] = Commit.new(adam_commits)
-    breakdown 
+    breakdown
 	end
 
 	def self.users
 		endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/contributors"
 		json = get_data(endpoint)
-
 		user = Users.new
 		user.return_data(json)
 	end
