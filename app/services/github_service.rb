@@ -1,5 +1,7 @@
 class GithubService < ApiService
 	def self.commits
+		breakdown = Hash.new { |hash, key| hash[key] = [] }
+
 		dom_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=domo2192&per_page=100"
 		ben_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=b-enji-cmd&per_page=100"
 		tommy_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/commits?author=tsnieuwen&per_page=100"
@@ -25,6 +27,11 @@ class GithubService < ApiService
 		adam_commits.map do |commit|
 					Commit.new(commit)
 		end
+
+		breakdown["domo2192"] = dom_commits
+		breakdown["b-enji-cmd"] = ben_commits
+		breakdown["tsnieuwen"] = tommy_commits
+		breakdown["Pragmaticpraxis37"] = adam_commits
 	end
 
 	def self.users
@@ -41,5 +48,11 @@ class GithubService < ApiService
 		endpoint = "https://api.github.com/repos/domo2192/little-esty-shop"
 		json = get_data(endpoint)
 		json[:name]
+	end
+
+	def self.prs
+		pr_endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/pulls?state=closed"
+		pr_json = get_data(pr_endpoint)
+		pr_json.first[:number]
 	end
 end
