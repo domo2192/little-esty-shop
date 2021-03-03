@@ -12,26 +12,12 @@ class GithubService < ApiService
 		tommy_commits = get_data(tommy_endpoint)
 		adam_commits = get_data(adam_endpoint)
 
-		ben_commits.map do |commit|
-					Commit.new(commit)
-		end
 
-		dom_commits.map do |commit|
-					Commit.new(commit)
-		end
-
-		tommy_commits.map do |commit|
-					Commit.new(commit)
-		end
-
-		adam_commits.map do |commit|
-					Commit.new(commit)
-		end
-
-		breakdown["domo2192"] = dom_commits
-		breakdown["b-enji-cmd"] = ben_commits
-		breakdown["tsnieuwen"] = tommy_commits
-		breakdown["Pragmaticpraxis37"] = adam_commits
+		breakdown["domo2192"] = Commit.new(dom_commits)
+		breakdown["b-enji-cmd"] = Commit.new(ben_commits)
+		breakdown["tsnieuwen"] = Commit.new(tommy_commits)
+		breakdown["Pragmaticpraxis37"] = Commit.new(adam_commits)
+    breakdown 
 	end
 
 	def self.users

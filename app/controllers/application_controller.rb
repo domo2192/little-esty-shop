@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def application
     @json_users ||= GithubService.users
-    #@commits = GithubService.commits
+    @commits ||= GithubService.commits
     @prs ||= GithubService.prs
     @repo ||= GithubService.repo
   end
