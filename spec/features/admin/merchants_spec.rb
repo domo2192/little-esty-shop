@@ -89,6 +89,16 @@ RSpec.describe "As an admin" do
 			expect(page).not_to have_content("#{@mer_1.name}")
 		end
 
+		it "can enable or disable a merchant" do
+			visit "/admin/merchants"
+			within("#disabled-merchant-#{@mer_1.id}") do
+				click_on("Enable")
+			end
+			within("#enabled-merchant-#{@mer_1.id}") do
+				expect(page).to have_content("#{@mer_1.name}")
+			end
+		end
+
 		it "shows the top 5 merchants" do
 			visit "/admin/merchants"
 			expect(@mer_1.name).to appear_before(@mer_2.name)
