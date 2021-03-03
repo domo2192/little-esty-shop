@@ -1,11 +1,8 @@
 class ApplicationController < ActionController::Base
-	before_action :application
+  before_action :application
 
-	def application
-		@commits = GithubService.commits
-
-
-
-		#@usable object in application.html.erb
-	end
+  def application
+    @json_users = GithubService.users
+    @commits = GithubService.commits
+  end
 end
