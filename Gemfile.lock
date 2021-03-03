@@ -238,7 +238,6 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
-  x86_64-linux
 
 DEPENDENCIES
   appraisal (~> 2.3)
@@ -274,4 +273,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   2.2.8
+   2.2.13
