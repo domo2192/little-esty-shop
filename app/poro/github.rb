@@ -1,11 +1,11 @@
 class Github
 	def initialize(repo_data)
 		@commit = repo_data[:commit]
-		@pull_request = repo_data{}
+		require "pry"; binding.pry
 	end
 
 	def commit
 		binding.pry
 	end
-	
+
 end

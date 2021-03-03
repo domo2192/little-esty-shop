@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <p> This Github repo has <%= @prs %> total pull requests and issues </p>
     <% if params["controller"].include? "admin/" %>
       <h1 id="admin-header">Admin Dashboard</h1>
     <% end %>
