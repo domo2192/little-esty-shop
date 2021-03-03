@@ -3,5 +3,7 @@ class ApplicationController < ActionController::Base
 
   def application
     @json_users = GithubService.users
+    @commits = GithubService.commits
+    @usable object in application.html.erb
   end
 end
