@@ -89,8 +89,6 @@ RSpec.describe "As an admin" do
     		click_button("Update Invoice Status")
     	
 				#expect(page).to have_content("Invoice #{@invoice1.id}") status????
-
-				expect(page).to have_content("Created on: Wednesday, March 03, 2021")
 				expect(page).to have_content("Item name: #{@item_1.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
 				expect(page).to have_content("Item name: #{@item_5.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
 				expect(page).to have_content("Item name: #{@item_9.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
