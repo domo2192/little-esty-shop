@@ -81,14 +81,13 @@ RSpec.describe "As an admin" do
 		describe "the admin Invoices show page" do
 			it "shows all the information about an invoice" do
 				visit "/admin/invoices/#{@invoice1.id}"
-				#NEEDS DROPDOWN TESTINGS
 				expect(page).to have_content("Invoice #{@invoice1.id}")
 				expect(page).to have_select("status")
     		select "cancelled", from: "status"
     		expect(page).to have_button("Update Invoice Status")
     		click_button("Update Invoice Status")
     	
-				#expect(page).to have_content("Invoice #{@invoice1.id}") status????
+		
 				expect(page).to have_content("Item name: #{@item_1.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
 				expect(page).to have_content("Item name: #{@item_5.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
 				expect(page).to have_content("Item name: #{@item_9.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
