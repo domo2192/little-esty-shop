@@ -89,6 +89,15 @@ RSpec.describe "As an admin" do
 			expect(page).not_to have_content("#{@mer_1.name}")
 		end
 
+		it "reverts back to previous state if update name is left empty" do
+			visit "/admin/merchants/#{@mer_1.id}"
+			click_on("Update Merchant")
+			fill_in "name", with: ""
+			click_on("Submit")
+			visit "/admin/merchants"
+			expect(page).to have_content("#{@mer_1.name}")
+		end
+
 		it "can enable or disable a merchant" do
 			visit "/admin/merchants"
 			within("#disabled-merchant-#{@mer_1.id}") do
@@ -133,6 +142,13 @@ RSpec.describe "As an admin" do
 				expect(current_path).to eq("/admin/merchants")
 				expect(page).to have_content("merchant 1")
 				expect(page).to have_button("Enable")
+			end
+
+			it "does not allow me to leave merchant name empty" do
+					visit "/admin/merchants/new"
+					click_on "Submit"
+					expect(current_path).to eq("/admin/merchants")
+					expect(page).to have_content("Create New Merchant")
 			end
 		end
 	end
