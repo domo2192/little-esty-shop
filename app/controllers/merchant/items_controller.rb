@@ -37,7 +37,7 @@ class Merchant::ItemsController < ApplicationController
   def create
     @item = @merchant.items.new(item_create_params)
     @item.save
-    redirect_to new_merchant_item_path(@merchant)
+    redirect_to merchant_items_path(@merchant)
   end
 
   private
