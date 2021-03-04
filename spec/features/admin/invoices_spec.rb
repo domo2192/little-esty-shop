@@ -31,7 +31,7 @@ RSpec.describe "As an admin" do
 		@item_18 = create(:item, merchant_id: @mer_5.id)
 		@item_19 = create(:item, merchant_id: @mer_5.id)
 		@item_20 = create(:item, merchant_id: @mer_5.id)
-		
+
 		@invoice1 = create(:invoice, customer_id: @cust_1.id)
 		@invoice2 = create(:invoice, customer_id: @cust_2.id)
 		@invoice3 = create(:invoice, customer_id: @cust_3.id)
@@ -56,7 +56,7 @@ RSpec.describe "As an admin" do
 		@invoice_item42 = create(:invoice_item, status: 0 , item_id:@item_18.id, invoice_id:@invoice2.id)
 		@invoice_item43 = create(:invoice_item, status: 0 , item_id:@item_19.id, invoice_id:@invoice3.id)
 		@invoice_item44 = create(:invoice_item, item_id:@item_20.id, invoice_id:@invoice4.id)
-		
+
 		@transaction1 = create(:transaction, result: "success", invoice_id: @invoice1.id)
 		@transaction2 = create(:transaction, result: "failed", invoice_id: @invoice1.id)
 		@transaction2 = create(:transaction, result: "success", invoice_id: @invoice2.id)
@@ -86,8 +86,7 @@ RSpec.describe "As an admin" do
     		select "cancelled", from: "status"
     		expect(page).to have_button("Update Invoice Status")
     		click_button("Update Invoice Status")
-    	
-		
+
 				expect(page).to have_content("Item name: #{@item_1.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
 				expect(page).to have_content("Item name: #{@item_5.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
 				expect(page).to have_content("Item name: #{@item_9.name}, Quantity ordered: 10, Sold for: $2.00 per unit, Status: pending")
@@ -98,4 +97,4 @@ RSpec.describe "As an admin" do
 			end
 		end
 	end
-end	
+end
