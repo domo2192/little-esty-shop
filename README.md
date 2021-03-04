@@ -87,11 +87,27 @@ $ rails s
 $ rails db:create
 $ rails db:migrate
 ```
-3. Seed database
+3. Read data from CSV's
+* Individual files (without <>)
 ```sh
-$ rails db:seed
+$ rails csv_load:<csv_filename>
+```
+* All files
+```sh
+$ rails csv_load:all
 ```
 4. Nagivate to `http://localhost:3000/`
+5. API use
+- Generate your own Personal Access Token
+- Create figaro config
+```sh
+ $ bundle exec figaro install
+```
+- Setup your `config/application.yml` 
+```
+GITHUB_TOKEN: 'yourtoken'
+
+```
 
 
 
