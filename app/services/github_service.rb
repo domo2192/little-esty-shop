@@ -23,7 +23,6 @@ class GithubService < ApiService
 	def self.users
 		endpoint = "https://api.github.com/repos/domo2192/little-esty-shop/contributors"
 		json = get_data(endpoint)
-		require "pry"; binding.pry
 		user = Users.new
 		user.return_data(json)
 	end
