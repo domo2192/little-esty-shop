@@ -2,6 +2,6 @@
 
 <%= form_with url: "/admin/merchants", method: :post, local: true do |form| %>
   <%= form.label(:name, 'Name:') %>
-  <%= form.text_field :name %><br>
+  <%= form.text_field :name , required: true%><br>
   <%= form.submit('Submit') %>
 <% end %>
