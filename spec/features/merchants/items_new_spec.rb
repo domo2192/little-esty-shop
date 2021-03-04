@@ -13,7 +13,7 @@ RSpec.describe 'Merchant Items new page' do
     fill_in("unit_price", with: 10)
     click_button("Create Item")
 
-    expect(page).to have_current_path(new_merchant_item_path(mer_1))
+    expect(page).to have_current_path(merchant_items_path(mer_1))
     expect(page).to have_content("New Item")
   end
 end
