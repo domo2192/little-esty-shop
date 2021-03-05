@@ -1,10 +1,10 @@
 <h1> Create Bulk Discount: </h1>
 <%= form_with(url: "/merchants/#{@merchant.id}/bulk_discounts", method: "post", local: true) do |form| %>
-      <%= form.label "Create Bulk Discount Name" %></h4>
+      <%= form.label "Create Bulk Discount Name" %>
     <p><%= form.text_field :name, :placeholder => "Discount Name" %></p><br>
     <%= form.label "Create Bulk Discount Percentage" %>
     <p><%= form.number_field :percentage, in: 1.0..100, :placeholder => 0 %></p> <br>
-    <%= form.label "Change Bulk Discount Quantity" %>
+    <%= form.label "Create Bulk Discount Quantity" %>
     <p><%= form.number_field :quantity, in: 1.0..20.0, :placeholder => 0 %></p><br>
     <%= form.submit "Create Bulk Discount" %>
 <% end  %>
