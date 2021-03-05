@@ -53,4 +53,19 @@ RSpec.describe 'Merchant discount index ' do
       click_link("Create New Bulk Discount")
       expect(current_path).to eq(new_merchant_bulk_discount_path(mer_1))
   end
+
+  it "has a link next to each bulk discount to delete it " do
+    mer_1 = create(:merchant)
+    bulk_discount1 = create(:bulk_discount, merchant_id:mer_1.id)
+    bulk_discount2 = create(:bulk_discount, merchant_id:mer_1.id)
+    bulk_discount3 = create(:bulk_discount, merchant_id:mer_1.id)
+      visit(merchant_bulk_discounts_path(mer_1))
+      expect(page).to have_link("Delete #{bulk_discount1.name}")
+      click_link("Delete #{bulk_discount1.name}")
+      save_and_open_page
+      expect(page).not_to have_content(bulk_discount1.name)
+      expect(page).not_to have_content(bulk_discount1.percentage)
+      expect(page).not_to have_content(bulk_discount1.quantity)
+      expect(current_path).to eq(merchant_bulk_discounts_path(mer_1))
+  end
 end
