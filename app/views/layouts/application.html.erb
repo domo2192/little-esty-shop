@@ -11,15 +11,6 @@
   </head>
 
   <body>
-     <p> This Github repo: <%= @repo  %> has <%= @prs %> total pull requests and issues </p>
-     <h3>Commits: </h3>
-     <p><%= @commits["domo2192"].author %> - <%= @commits["domo2192"].commit_count %></p> 
-     <p><%= @commits["b-enji-cmd"].author %> - <%= @commits["b-enji-cmd"].commit_count %></p> 
-     <p><%= @commits["tsnieuwen"].author %> - <%= @commits["tsnieuwen"].commit_count %></p> 
-     <p><%= @commits["Pragmaticpraxis37"].author %> - <%= @commits["Pragmaticpraxis37"].commit_count %></p> 
-    <% @json_users.each do |name|%>
-    <h2> Project Contributor: <%=name %></h2>
-      <%end %>
 
     <% if params["controller"].include? "admin/" %>
       <h1 id="admin-header">Admin Dashboard</h1>
