@@ -30,4 +30,19 @@ RSpec.describe 'Merchant discount index ' do
     click_link(bulk_discount1.name)
     expect(current_path).to eq(merchant_bulk_discount_path(mer_1, bulk_discount1))
   end
+
+  it "can show the api information for upcoming holidays" do
+    mer_1 = create(:merchant)
+    bulk_discount1 = create(:bulk_discount, merchant_id:mer_1.id)
+    bulk_discount2 = create(:bulk_discount, merchant_id:mer_1.id)
+    bulk_discount3 = create(:bulk_discount, merchant_id:mer_1.id)
+    visit(merchant_bulk_discounts_path(mer_1))
+    expect(page).to have_content("Upcoming Holidays")
+
+    within("#upcomingholidays-") do
+      expect(page).to have_content("Memorial Day")
+      expect(page).to have_content("Independence Day")
+      expect(page).to have_content("Labour Day")
+    end
+  end
 end
