@@ -6,6 +6,7 @@ get "/", to:"admin/dashboard#index"
     resources:dashboard, only: [:index]
     resources:items
     resources:invoices
+    resources:bulk_discounts
   end
   resources :invoice_items, only: [:update], controller: "merchant/invoice_items"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
