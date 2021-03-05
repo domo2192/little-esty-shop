@@ -1,0 +1,10 @@
+<h1> Edit this Bulk Discount: </h1>
+<%= form_with(model: [@merchant, @bulk_discount], local: true) do |form| %>
+      <%= form.label "Edit Bulk Discount Name" %></h4>
+    <p><%= form.text_field :name, :placeholder => "#{@bulk_discount.name}" %></p><br>
+    <%= form.label "Edit Bulk Discount Percentage" %>
+    <p><%= form.number_field :percentage, in: 1.0..100, :placeholder => "#{@bulk_discount.percentage}"%></p> <br>
+    <%= form.label "Edit Bulk Discount Quantity" %>
+    <p><%= form.number_field :quantity, in: 1.0..20.0, :placeholder => "#{@bulk_discount.quantity}" %></p><br>
+    <%= form.submit "Edit Bulk Discount" %>
+<% end  %>
