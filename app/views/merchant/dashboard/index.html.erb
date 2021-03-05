@@ -1,6 +1,7 @@
 <%= @merchant.name %>
 <%= link_to "Merchant Items" ,merchant_items_path(@merchant) %>
-<%= link_to "Merchant Invoices", merchant_invoices_path(@merchant) %>
+<%= link_to "Merchant Invoices", merchant_invoices_path(@merchant)%>
+<%= link_to "Merchant Discounts", merchant_bulk_discounts_path(@merchant) %>
 <br>
 <h2> Favorite Customers: </h2>
 <% @merchant.top_five_customers.each do |customer| %>
