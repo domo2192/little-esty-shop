@@ -45,4 +45,12 @@ RSpec.describe 'Merchant discount index ' do
       expect(page).to have_content("Labour Day")
     end
   end
+
+  it "has a link to create a new bulk discount" do
+      mer_1 = create(:merchant)
+      visit(merchant_bulk_discounts_path(mer_1))
+      expect(page).to have_content("Create New Bulk Discount")
+      click_link("Create New Bulk Discount")
+      expect(current_path).to eq(new_merchant_bulk_discount_path(mer_1))
+  end
 end
