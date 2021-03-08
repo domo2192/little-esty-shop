@@ -41,10 +41,17 @@ class GithubService < ApiService
 		pr_json.first[:number]
 	end
 
-	def self.holidays
+	def self.holiday_names
 		endpoint = "https://date.nager.at/Api/v2/NextPublicHolidays/US"
-		json = get_holidays(endpoint)
+		json = get_holidays(endpoint)[0..2]
 		holidays = Holiday.new
-		holidays.return_data(json)
+		holidays.return_name(json)
+	end
+
+	def self.holiday_dates
+		endpoint = "https://date.nager.at/Api/v2/NextPublicHolidays/US"
+		json = get_holidays(endpoint)[0..2]
+		holidays = Holiday.new
+		holidays.return_date(json)
 	end
 end
