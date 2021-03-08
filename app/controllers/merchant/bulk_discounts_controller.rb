@@ -3,7 +3,8 @@ class Merchant::BulkDiscountsController < ApplicationController
     before_action :find_discount, only: [:show, :destroy, :edit, :update]
 
   def index
-    @json_holidays ||= GithubService.holidays
+    @json_holiday_names ||= GithubService.holiday_names
+    @json_holiday_dates ||= GithubService.holiday_dates
   end
 
   def show

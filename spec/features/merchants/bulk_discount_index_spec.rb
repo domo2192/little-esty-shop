@@ -40,6 +40,7 @@ RSpec.describe 'Merchant discount index ' do
     expect(page).to have_content("Upcoming Holidays")
 
     within("#upcomingholidays-") do
+      save_and_open_page
       expect(page).to have_content("Memorial Day")
       expect(page).to have_content("Independence Day")
       expect(page).to have_content("Labour Day")
