@@ -1,28 +1,24 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe 'Merchant discount show' do
-  it "shows the quantity threshold and and percentage of discount" do
-    mer_1 = create(:merchant)
-    bulk_discount1 = create(:bulk_discount, merchant_id:mer_1.id)
-    visit(merchant_bulk_discount_path(mer_1, bulk_discount1))
-    expect(page).to have_content(bulk_discount1.name)
-    expect(page).to have_content(bulk_discount1.percentage)
-    expect(page).to have_content(bulk_discount1.quantity)
+RSpec.describe BulkDiscount, type: :model do
+
+  describe 'validations' do
+    it { should validate_presence_of :name }
+    it { should validate_numericality_of :percentage }
+    it { should validate_numericality_of :quantity}
   end
 
-  it "shows a link to edit the bulk discount and takes me to the edit form" do
-    mer_1 = create(:merchant)
-    bulk_discount1 = create(:bulk_discount, merchant_id:mer_1.id)
-    visit(merchant_bulk_discount_path(mer_1, bulk_discount1))
-    expect(page).to have_link("Edit this bulk discount")
-    click_link("Edit this bulk discount")
-    expect(current_path).to eq(edit_merchant_bulk_discount_path(mer_1, bulk_discount1))
+  describe "relationships" do
+    it { should belong_to :merchant }
+    it { should have_many(:items).through(:merchant) }
+    it { should have_many(:invoice_items).through(:items) }
+    it { should have_many(:invoices).through(:invoice_items) }
   end
 
-  it "you are unable to delete or edit a bulk discount if the invoice is pending" do
+  it "shoulld find pending invoices" do
     mer_1 = create(:merchant)
     bulk_discount1 = create(:bulk_discount, merchant_id: mer_1.id, percentage: 10, quantity:8)
-    bulk_discount1 = create(:bulk_discount, merchant_id: mer_1.id, percentage: 20, quantity:10)
+    bulk_discount2 = create(:bulk_discount, merchant_id: mer_1.id, percentage: 20, quantity:10)
     mer_2 = create(:merchant)
     cust_1 = create(:customer)
     cust_2 = create(:customer)
@@ -48,8 +44,6 @@ RSpec.describe 'Merchant discount show' do
     invoice_item4 = create(:invoice_item, item_id:item_5.id, invoice_id:invoice6.id, quantity: 3, unit_price: 5)
     invoice_item4 = create(:invoice_item, item_id:item_6.id, invoice_id:invoice5.id, quantity: 3, unit_price: 5)
     transaction1 = create(:transaction, invoice_id: invoice1.id, result: "success")
-    visit(merchant_bulk_discount_path(mer_1, bulk_discount1))
-    expect(page).not_to have_link("Edit this bulk discount")
-    expect(page).to have_content("You can edit this discount once you complete your pending invoices")
+    expect(bulk_discount1.pending_invoices).to eq([invoice_item1])
   end
 end
