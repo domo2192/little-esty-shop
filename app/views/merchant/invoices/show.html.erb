@@ -8,8 +8,11 @@
 <%=  "Quantity Sold-#{@invoice_item.quantity}"%> <br>
 <%=  "Unit Price-#{@invoice_item.unit_price}"%> <br>
 <%=  "Current Status-#{@invoice_item.status}"%> <br>
-<%=  "Total Revenue from Invoice: #{Invoice.total_revenue(@invoice.id)}"%>
-<%= "Revenue after Discounts: #{@invoice.discount}"%>
+<%=  "Total Revenue from Invoice: #{Invoice.total_revenue(@invoice.id)}"%><br>
+<%= "Revenue after Discounts: #{@invoice.discount}"%><br>
+<% if @invoice.discount < Invoice.total_revenue(@invoice.id) %>
+<%= link_to "See Discount Applied", merchant_bulk_discount_path(@merchant, @invoice_item.discount_from_total.id)%>
+<% end%>
 <%= form_with(model: @invoice_item, method:"patch", local: true) do |form|%>
   <%= form.hidden_field :invoice_id, value: @invoice.id %>
   <%=form.hidden_field :merchant_id, value: @merchant.id %>
