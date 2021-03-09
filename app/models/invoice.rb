@@ -13,4 +13,13 @@ class Invoice < ApplicationRecord
   def self.total_revenue(invoice_id)
     Invoice.joins(:transactions, :invoice_items).where("invoices.id = ? AND transactions.result = ?", invoice_id, "success").sum("invoice_items.quantity * invoice_items.unit_price")
   end
+
+  def discount
+    hold = 0
+    invoice_items.each do |invoice_item| 
+      hold += invoice_item.discounted
+    end
+    hold
+  end
+
 end
