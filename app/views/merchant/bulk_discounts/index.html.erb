@@ -3,7 +3,11 @@
 <% @merchant.bulk_discounts.each do |discount| %>
 <p><%= link_to "#{discount.name}", merchant_bulk_discount_path(@merchant, discount) %> <br>
 <%= "Discount Percentage: #{discount.percentage}---- Item Quantity: #{discount.quantity}"%></p> <br>
+<% if discount.pending_invoices.empty? %>
 <%= link_to "Delete #{discount.name}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}", method: :delete %>
+<%else %>
+ <p> You can only delete this discount once you complete your pending invoices</p>
+ <%end %>
 <%end%>
 <h2> Upcoming Holidays </h2>
   <section id="upcomingholidays-">

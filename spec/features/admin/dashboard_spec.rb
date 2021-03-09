@@ -79,6 +79,11 @@ RSpec.describe"As an admin" do
 	describe"when I click on the index links"do
 
 		it"takes you to the admin merchants index"do
+		InvoiceItem.destroy_all
+		Transaction.destroy_all
+		Item.destroy_all
+		Invoice.destroy_all
+		Customer.destroy_all
 			visit "/admin"
 			click_link "Admin Merchants Index"
 			expect(current_path).to eq("/admin/merchants")
