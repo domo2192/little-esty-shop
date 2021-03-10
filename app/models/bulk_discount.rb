@@ -8,6 +8,6 @@ class BulkDiscount < ApplicationRecord
   has_many :invoices, through: :invoice_items
 
   def pending_invoices
-    invoice_items.where(status: :'pending')
+    invoice_items.where(status: :pending)
   end
 end

@@ -6,8 +6,8 @@
 <section id="discounts-<%= discount.id %>">
 <p><%= link_to "#{discount.name}", merchant_bulk_discount_path(@merchant, discount) %> <br>
 <%= "Discount Percentage: #{discount.percentage}---- Item Quantity: #{discount.quantity}"%></p> <br>
-<% if discount.pending_invoices.empty? %>
-<%= link_to "Delete #{discount.name}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}", method: :delete %>
+<% if !discount.pending_invoices.empty? %>
+<%= button_to "Delete #{discount.name}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}", method: :delete %>
 <%else %>
  <p> You can only delete this discount once you complete your pending invoices</p>
  <%end%>
@@ -16,10 +16,12 @@
 
 <h2> Upcoming Holidays </h2>
   <section id="upcomingholidays-">
+    <h1>Holiday Names:</h1>
   <% @json_holiday_names.each do |holiday_name|%> <br>
-  <%= holiday_name %>
+  <p><%= holiday_name %> </p>
   <%end %>
+  <h2> Upcoming Holiday Dates: </h2>
   <% @json_holiday_dates.each do |holiday_date| %> <br>
-  <%= holiday_date %>
+  <p> <%= holiday_date %> </p>
   <%end %>
 </section>
