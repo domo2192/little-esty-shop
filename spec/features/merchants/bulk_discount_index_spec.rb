@@ -9,15 +9,21 @@ RSpec.describe 'Merchant discount index ' do
     visit(merchant_dashboard_index_path(mer_1))
     expect(page).to have_link("Merchant Discounts")
     click_link("Merchant Discounts")
-    expect(page).to have_link(bulk_discount1.name)
-    expect(page).to have_link(bulk_discount2.name)
-    expect(page).to have_link(bulk_discount3.name)
-    expect(page).to have_content(bulk_discount1.percentage)
-    expect(page).to have_content(bulk_discount1.quantity)
-    expect(page).to have_content(bulk_discount2.percentage)
-    expect(page).to have_content(bulk_discount2.quantity)
-    expect(page).to have_content(bulk_discount3.percentage)
-    expect(page).to have_content(bulk_discount3.quantity)
+      within("#discounts-#{bulk_discount1.id}") do
+        expect(page).to have_link(bulk_discount1.name)
+        expect(page).to have_content(bulk_discount1.percentage)
+        expect(page).to have_content(bulk_discount1.quantity)
+      end
+      within("#discounts-#{bulk_discount2.id}") do
+        expect(page).to have_link(bulk_discount2.name)
+        expect(page).to have_content(bulk_discount2.percentage)
+        expect(page).to have_content(bulk_discount2.quantity)
+      end
+      within("#discounts-#{bulk_discount3.id}") do
+      expect(page).to have_link(bulk_discount3.name)
+      expect(page).to have_content(bulk_discount3.percentage)
+      expect(page).to have_content(bulk_discount3.quantity)
+    end
   end
 
   it "can click discount name and bring you to discount show" do
@@ -26,9 +32,11 @@ RSpec.describe 'Merchant discount index ' do
     bulk_discount2 = create(:bulk_discount, merchant_id:mer_1.id)
     bulk_discount3 = create(:bulk_discount, merchant_id:mer_1.id)
     visit(merchant_bulk_discounts_path(mer_1))
-    expect(page).to have_link(bulk_discount1.name)
-    click_link(bulk_discount1.name)
-    expect(current_path).to eq(merchant_bulk_discount_path(mer_1, bulk_discount1))
+      within("#discounts-#{bulk_discount1.id}") do
+        expect(page).to have_link(bulk_discount1.name)
+        click_link(bulk_discount1.name)
+      end
+        expect(current_path).to eq(merchant_bulk_discount_path(mer_1, bulk_discount1))
   end
 
   it "can show the api information for upcoming holidays" do
@@ -40,7 +48,6 @@ RSpec.describe 'Merchant discount index ' do
     expect(page).to have_content("Upcoming Holidays")
 
     within("#upcomingholidays-") do
-      save_and_open_page
       expect(page).to have_content("Memorial Day")
       expect(page).to have_content("Independence Day")
       expect(page).to have_content("Labour Day")
@@ -65,7 +72,6 @@ RSpec.describe 'Merchant discount index ' do
       click_link("Delete #{bulk_discount1.name}")
       expect(page).not_to have_content(bulk_discount1.name)
       expect(page).not_to have_content(bulk_discount1.percentage)
-      expect(page).not_to have_content(bulk_discount1.quantity)
       expect(current_path).to eq(merchant_bulk_discounts_path(mer_1))
   end
 
@@ -101,6 +107,5 @@ RSpec.describe 'Merchant discount index ' do
     transaction1 = create(:transaction, invoice_id: invoice1.id, result: "success")
       visit(merchant_bulk_discounts_path(mer_1))
       expect(page).not_to have_link("Delete #{bulk_discount1.name}")
-      save_and_open_page
   end
 end
