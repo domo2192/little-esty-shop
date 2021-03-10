@@ -23,6 +23,6 @@ RSpec.describe 'Merchant bulk discount new' do
     fill_in :percentage, with: "number"
     fill_in :quantity, with: "number"
     click_button("Create Bulk Discount")
-    expect(page).to have_content("Enter Integers for both quantity and percentage")
+    expect(page).to have_content("Missing required field. Use integers for quanitity and percentage")
   end
 end
