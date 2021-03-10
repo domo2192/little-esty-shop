@@ -15,3 +15,5 @@ BulkDiscount.create(name: "discount 6", merchant_id: 6, percentage: 10, quantity
 BulkDiscount.create(name: "discount 7", merchant_id: 7, percentage: 10, quantity:10)
 BulkDiscount.create(name: "discount 8", merchant_id: 8, percentage: 10, quantity:10)
 BulkDiscount.create(name: "discount 8", merchant_id: 1, percentage: 20, quantity:15)
+Merchant.create(name: "Dominic", id:101)
+BulkDiscount.create(name: "Dominics Discount", merchant_id: 101, percentage: 20, quantity:15)
