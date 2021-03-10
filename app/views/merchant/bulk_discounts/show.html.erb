@@ -1,7 +1,7 @@
 <h1> Bulk Discount: <%=@bulk_discount.name%></h1>
 <p>Percentage Discounted: <%=@bulk_discount.percentage%></p>
 <p>Quantity Threshold: <%=@bulk_discount.quantity%></p>
-<%if @bulk_discount.pending_invoices.empty?%>
+<%if !@bulk_discount.pending_invoices.empty?%>
 <p><%=link_to "Edit this bulk discount", edit_merchant_bulk_discount_path(@merchant, @bulk_discount)%></p>
   <%else%>
   <p>You can edit this discount once you complete your pending invoices</p>
