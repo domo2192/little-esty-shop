@@ -15,11 +15,7 @@ class Invoice < ApplicationRecord
   end
 
   def discount
-    hold = 0
-    invoice_items.each do |invoice_item| 
-      hold += invoice_item.discounted
-    end
-    hold
+    invoice_items.sum(&:discounted)
   end
 
 end

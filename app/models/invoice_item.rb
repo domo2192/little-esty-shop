@@ -21,14 +21,11 @@ class InvoiceItem < ApplicationRecord
   end
 
   def discounted
-    if merchant.bulk_discounts.nil? || discount_from_total == nil
-      revenue
-    else
-     revenue - discount_from_total.percentage.to_f/100 * revenue
-    end
+    return revenue if discount_from_total.nil?
+     revenue - (revenue * (discount_from_total.percentage.to_f/100))
+   end
   end
 
   def discount_from_total
     bulk_discounts.where('? >= quantity', self.quantity).order(percentage: :desc, quantity: :desc).first
   end
-end
