@@ -16,7 +16,7 @@ RSpec.describe 'Merchant Dashboard' do
 
     expect(page).to have_link("Merchant Items")
     expect(page).to have_link("Merchant Invoices")
-    expct(page).to have_link("Merchant Discounts")
+    expect(page).to have_link("Merchant Discounts")
   end
 
   it "show favorite customers and next to each customer name, I see the number of

@@ -12,7 +12,14 @@ RSpec.describe 'Merchant discount show' do
 
   it "shows a link to edit the bulk discount and takes me to the edit form" do
     mer_1 = create(:merchant)
+    cust_1 = create(:customer)
     bulk_discount1 = create(:bulk_discount, merchant_id:mer_1.id)
+    bulk_discount2 = create(:bulk_discount, merchant_id:mer_1.id)
+    bulk_discount3 = create(:bulk_discount, merchant_id:mer_1.id)
+    item_1 = create(:item, name: "item_1", merchant_id: mer_1.id)
+    invoice1 = create(:invoice, customer_id: cust_1.id)
+    invoice_item1 = create(:invoice_item, item_id:item_1.id, invoice_id:invoice1.id, quantity: 8, unit_price: 2, status: "pending")
+    invoice1 = create(:invoice, customer_id: cust_1.id)
     visit(merchant_bulk_discount_path(mer_1, bulk_discount1))
     expect(page).to have_link("Edit this bulk discount")
     click_link("Edit this bulk discount")
@@ -41,7 +48,7 @@ RSpec.describe 'Merchant discount show' do
     invoice4 = create(:invoice, customer_id: cust_4.id)
     invoice5 = create(:invoice, customer_id: cust_4.id)
     invoice6 = create(:invoice, customer_id: cust_4.id)
-    invoice_item1 = create(:invoice_item, item_id:item_1.id, invoice_id:invoice1.id, quantity: 8, unit_price: 2, status: 'pending')
+    invoice_item1 = create(:invoice_item, item_id:item_1.id, invoice_id:invoice1.id, quantity: 8, unit_price: 2)
     invoice_item2 = create(:invoice_item, item_id:item_2.id, invoice_id:invoice1.id, quantity: 10, unit_price: 5)
     invoice_item3 = create(:invoice_item, item_id:item_2.id, invoice_id:invoice1.id, quantity: 5, unit_price: 2)
     invoice_item4 = create(:invoice_item, item_id:item_4.id, invoice_id:invoice4.id, quantity: 3, unit_price: 5)

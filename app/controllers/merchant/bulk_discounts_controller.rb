@@ -19,7 +19,7 @@ class Merchant::BulkDiscountsController < ApplicationController
       flash[:notice] = "#{@bulk_discount.name} was created"
       redirect_to merchant_bulk_discounts_path(@merchant)
     else
-      flash[:notice] = "Enter Integers for both quantity and percentage"
+      flash[:notice] = "Missing required field. Use integers for quanitity and percentage"
       render :new
     end
   end
